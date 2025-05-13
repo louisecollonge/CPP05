@@ -20,8 +20,8 @@ class Bureaucrat
 
 		const std::string	&getName() const;
 		int					getGrade() const;
-		void				incrementGrade( int grade );
-		void				decrementGrade( int grade );
+		void				incrementGrade();
+		void				decrementGrade();
 };
 
-std::ostream	&operator<<( std::ostream& out, const Bureaucrat bureaucrat );
+std::ostream	&operator<<( std::ostream& out, const Bureaucrat &bureaucrat );

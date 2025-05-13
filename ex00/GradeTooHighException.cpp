@@ -1,6 +1,6 @@
 #include "GradeTooHighException.hpp"
 
-const char*	what() const throw() {
-	return "Grade is too high: must be >= 1";
+const char*	GradeTooHighException::what() const throw() {
+	return "Grade is too high: must be >= 1 !";
 }
 

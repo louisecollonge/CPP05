@@ -1,23 +1,21 @@
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name) {
-	try {
-		if (grade < 1)
-			throw GradeTooHighException();
-		else if (grade > 150)
-			throw GradeTooLowException();
-		else
-			_grade = grade;
-	} catch (std::exception & e) {
-		std::cerr << "Grade error caught in constructor: " << e.what() << std::endl;
-		_grade = 150;
-	}
+	if (grade < 1)
+		throw GradeTooHighException();
+	else if (grade > 150)
+		throw GradeTooLowException();
+	else
+		_grade = grade;
 }
 
-Bureaucrat::Bureaucrat( const Bureaucrat& other ) : _name(other._name), _grade(other._grade) {}
+Bureaucrat::Bureaucrat( const Bureaucrat& other ) : 
+	_name(other._name), 
+	_grade(other._grade) {}
 
 Bureaucrat	&Bureaucrat::operator=( const Bureaucrat& other ) {
-	(void)other;
+	if (this != &other)
+        _grade = other._grade;
 	std::cerr << "Cannot assign Bureaucrats" << std::endl;
 	return *this;
 }
@@ -28,35 +26,22 @@ const std::string	&Bureaucrat::getName() const { return _name; }
 
 int	Bureaucrat::getGrade() const { return _grade; }
 
-void	Bureaucrat::incrementGrade( int grade ) {
-	try {
-		grade--;
-		if (grade < 1)
-			throw GradeTooHighException();
-		else
-			_grade = grade;
-	} catch (std::exception & e) {
-		std::cerr << "Grade error caught in increment function: " << e.what() << std::endl;
-	}
+void	Bureaucrat::incrementGrade() {
+	if (_grade <= 1)
+		throw GradeTooHighException();
+	_grade--;
 }
 
-void	Bureaucrat::decrementGrade( int grade ) {
-	try {
-		grade++;
-		if (grade > 150)
-			throw GradeTooLowException();
-		else
-			_grade = grade;
-	} catch (std::exception & e) {
-		std::cerr << "Grade error caught in decrement function: " << e.what() << std::endl;
-	}
+void	Bureaucrat::decrementGrade() {
+	if (_grade >= 150)
+		throw GradeTooLowException();
+	_grade++;
 }
 
-std::ostream	&operator<<( std::ostream& out, const Bureaucrat bureaucrat ) {
+std::ostream	&operator<<( std::ostream& out, const Bureaucrat &bureaucrat ) {
 	out << bureaucrat.getName()
 		<< ", bureaucrat grade "
 		<< bureaucrat.getGrade()
-		<< "."
-		<< std::endl;
+		<< ".";
 	return out;
 }

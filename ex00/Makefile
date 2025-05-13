@@ -1,11 +1,13 @@
 #Variables
 
 NAME = bureaucrat
-CC = C++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 SRC =	main.cpp \
-		Bureaucrat.cpp
+		Bureaucrat.cpp \
+		GradeTooHighException.cpp \
+		GradeTooLowException.cpp
 
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
