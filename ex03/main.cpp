@@ -15,23 +15,35 @@ int	main() {
     Intern  bimo;
     Bureaucrat  cocotte("Cocotte", 1);
 
-    AForm* form = bimo.makeForm("ShrubberyCreationForm", "home");
-    AForm* file = bimo.makeForm("RobotomyRequestForm", "home");
-    AForm* repertory = bimo.makeForm("PresidentialPardonForm", "home");
-    AForm* wrongForm = bimo.makeForm("wrongForm", "home");
+    AForm* form = bimo.makeForm("ShrubberyCreationForm", "form");
+    AForm* file = bimo.makeForm("RobotomyRequestForm", "file");
+    AForm* repertory = bimo.makeForm("PresidentialPardonForm", "repertory");
+    AForm* wrongForm = bimo.makeForm("wrongForm", "wrongForm");
     std::cout << std::endl;
 
-    cocotte.signForm(*form);
-    cocotte.executeForm(*form);
-    std::cout << std::endl;
+    try {
+        cocotte.signForm(*form);
+        cocotte.executeForm(*form);
+        std::cout << std::endl;
+    } catch (std::exception &e) {
+        std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+    }
 
-    cocotte.signForm(*file);
-    cocotte.executeForm(*file);
-    std::cout << std::endl;
+    try {
+        cocotte.signForm(*file);
+        cocotte.executeForm(*file);
+        std::cout << std::endl;
+    } catch (std::exception &e) {
+        std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+    }
 
-    cocotte.signForm(*repertory);
-    cocotte.executeForm(*repertory);
-    std::cout << std::endl;
+    try {
+        cocotte.signForm(*repertory);
+        cocotte.executeForm(*repertory);
+        std::cout << std::endl;
+    } catch (std::exception &e) {
+        std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+    }
 
     delete form;
     delete file;
