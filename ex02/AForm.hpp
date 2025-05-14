@@ -14,6 +14,7 @@ class AForm
 		bool				_signed;
 		const int			_signingGrade;
 		const int			_executingGrade;
+
 		AForm	&operator=( const AForm& other );
 
 	public:
@@ -27,7 +28,7 @@ class AForm
 		int					getExecutingGrade() const;
 		void				beSigned( const Bureaucrat &bureaucrat );
 
-		virtual AForm*		clone() = 0;
+		virtual void		execute( const Bureaucrat& bureaucrat ) = 0;
 };
 
 std::ostream	&operator<<( std::ostream& out, const AForm& Aform );

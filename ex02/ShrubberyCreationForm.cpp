@@ -1,6 +1,4 @@
 #include "ShrubberyCreationForm.hpp"
-#define DARK_GREEN		"\033[38;5;22m"
-#define RESET			"\033[0m"
 
 ShrubberyCreationForm::ShrubberyCreationForm( const std::string& target ) : AForm(target + "_shrubbery", 145, 137), _target(target) {}
 
@@ -17,7 +15,7 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=( const ShrubberyCreation
 void	ShrubberyCreationForm::execute( const Bureaucrat& bureaucrat ) {
 	if (this->getSigned() == false)
 		throw FileNotSignedException();
-	if (bureaucrat.getGrade() < this->getExecutingGrade())
+	if (bureaucrat.getGrade() > this->getExecutingGrade())
 		throw GradeTooLowException();
 
 	std::ofstream	file((_target + "_shrubbery").c_str());
@@ -26,24 +24,29 @@ void	ShrubberyCreationForm::execute( const Bureaucrat& bureaucrat ) {
 		return ;
 	}
 
-	file << DARK_GREEN
-		 << "           ____      v                __              "
-		 << "         _( .  )_       v v         _(  )_   _        "
-		 << "   v    ( .  .   )        v        ( .  . )_( )   v   "
-		 << "  v   _(  .    .  )_             _(  .    .   )     v " 
-		 << "     ( .     .    . )           ( .    .    .  )      "
-		 << "    (.  \\ \\/ / .    .)         (.  \\ \\  \\ \\//  .)     "
-		 << "     (  .\\   \\_/ / . )        (__  .\\ \\_/  / .  )     "
-		 << "      (_. \\     / ._)            (_. \\    /   _)      "
-		 << "        ( .|   |. )                (__|  |___)        "
-		 << "         (_|   |_)                    |  |            "
-		 << "           |   |                      |  |            "
-		 << "           |   |             *        |  |            "
-		 << "_______\\\\\\/     \\///________\\|/___\\\\\\/    \\///________"
-		 << RESET << std::endl;
+	file << "                                v                     \n"
+		 << "           ____      v                __              \n"
+		 << "         _( .  )_       v v         _(  )_   _        \n"
+		 << "   v    ( .  .   )        v        ( .  . )_( )   v   \n"
+		 << "  v   _(  .    .  )_             _(  .    .   )     v \n" 
+		 << "     ( .     .    . )           ( .    .    .  )      \n"
+		 << "    (.  \\ \\/ / .    .)         (.  \\ \\  \\ \\//  .)     \n"
+		 << "     (  .\\   \\_/ / . )        (__  .\\ \\_/  / .  )     \n"
+		 << "      (_. \\     / ._)            (_. \\    /   _)      \n"
+		 << "        ( .|   |. )                (__|  |___)        \n"
+		 << "         (_|   |_)                    |  |            \n"
+		 << "           |   |                      |  |            \n"
+		 << "           |   |             *        |  |            \n"
+		 << "_______\\\\\\/     \\///________\\|/___\\\\\\/    \\///________\n"
+		 << std::endl;
 
 	file.close();
 }
 
-AForm*	ShrubberyCreationForm::clone() {}
-
+std::ostream	&operator<<( std::ostream& out, const ShrubberyCreationForm& ShrubberyCreationForm ) {
+	out << "Name: " << ShrubberyCreationForm.getName() << std::endl
+		<< "Boolean: " << ShrubberyCreationForm.getSigned() << std::endl
+		<< "Signing grade: " << ShrubberyCreationForm.getSigningGrade() << std::endl
+		<< "Executing grade: " << ShrubberyCreationForm.getExecutingGrade() << std::endl;
+	return out;
+}

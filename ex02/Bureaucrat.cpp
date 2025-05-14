@@ -38,7 +38,7 @@ void	Bureaucrat::decrementGrade() {
 	_grade++;
 }
 
-void	Bureaucrat::signForm( Form &form ) const {
+void	Bureaucrat::signForm( AForm &form ) const {
 	try {
 		form.beSigned(*this);
 		std::cout << _name
@@ -54,6 +54,10 @@ void	Bureaucrat::signForm( Form &form ) const {
 				  << e.what()
 				  << std::endl;
 	}
+}
+
+void	Bureaucrat::executeForm( AForm &form ) const {
+	form.execute(*this);
 }
 
 std::ostream	&operator<<( std::ostream& out, const Bureaucrat &bureaucrat ) {

@@ -5,6 +5,9 @@
 #include <string>
 #include "AForm.hpp"
 
+#define DARK_GREEN		"\033[38;5;22m"
+#define RESET			"\033[0m"
+
 class ShrubberyCreationForm : public AForm
 {
 	private:
@@ -16,6 +19,7 @@ class ShrubberyCreationForm : public AForm
 		virtual ~ShrubberyCreationForm();
 		ShrubberyCreationForm	&operator=( const ShrubberyCreationForm& other );
 
-		void				execute( const Bureaucrat& bureaucrat );
-		virtual AForm*		clone();
+		virtual void		execute( const Bureaucrat& bureaucrat );
 };
+
+std::ostream	&operator<<( std::ostream& out, const ShrubberyCreationForm& ShrubberyCreationForm );

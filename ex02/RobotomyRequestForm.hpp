@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <cstdlib>
 #include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm
@@ -16,6 +18,7 @@ class RobotomyRequestForm : public AForm
 		
 		RobotomyRequestForm	&operator=( const RobotomyRequestForm& other );
 
-		void				execute( const Bureaucrat& bureaucrat );
-		virtual AForm*		clone();
+		virtual void		execute( const Bureaucrat& bureaucrat );
 };
+
+std::ostream	&operator<<( std::ostream& out, const RobotomyRequestForm& RobotomyRequestForm );

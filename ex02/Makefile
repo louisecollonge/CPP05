@@ -8,7 +8,11 @@ SRC =	main.cpp \
 		Bureaucrat.cpp \
 		GradeTooHighException.cpp \
 		GradeTooLowException.cpp \
-		Form.cpp
+		AForm.cpp \
+		PresidentialPardonForm.cpp \
+		RobotomyRequestForm.cpp \
+		ShrubberyCreationForm.cpp \
+		FileNotSignedException.cpp
 
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
