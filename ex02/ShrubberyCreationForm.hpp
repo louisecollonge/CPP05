@@ -16,7 +16,7 @@ class ShrubberyCreationForm : public AForm
 		virtual ~ShrubberyCreationForm();
 		ShrubberyCreationForm	&operator=( const ShrubberyCreationForm& other );
 
-		virtual void		execute( const Bureaucrat& bureaucrat );
+		virtual bool		execute( Bureaucrat const & executor ) const;
 };
 
 std::ostream	&operator<<( std::ostream& out, const ShrubberyCreationForm& ShrubberyCreationForm );

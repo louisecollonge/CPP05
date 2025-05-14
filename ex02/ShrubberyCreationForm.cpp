@@ -12,16 +12,20 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=( const ShrubberyCreation
 	return *this;
 }
 
-void	ShrubberyCreationForm::execute( const Bureaucrat& bureaucrat ) {
-	if (this->getSigned() == false)
+bool	ShrubberyCreationForm::execute( Bureaucrat const & executor ) const {
+	if (this->getSigned() == false) {
 		throw FileNotSignedException();
-	if (bureaucrat.getGrade() > this->getExecutingGrade())
+		return false;
+	}
+	if (executor.getGrade() > this->getExecutingGrade()) {
 		throw GradeTooLowException();
+		return false;
+	}
 
 	std::ofstream	file((_target + "_shrubbery").c_str());
 	if (!file.is_open()) {
 		std::cerr << "Error: cannot create file." << std::endl;
-		return ;
+		return false;
 	}
 
 	file << "                                v                     \n"
@@ -41,6 +45,7 @@ void	ShrubberyCreationForm::execute( const Bureaucrat& bureaucrat ) {
 		 << std::endl;
 
 	file.close();
+	return true;
 }
 
 std::ostream	&operator<<( std::ostream& out, const ShrubberyCreationForm& ShrubberyCreationForm ) {

@@ -17,7 +17,7 @@ class PresidentialPardonForm : public AForm
 		
 		PresidentialPardonForm	&operator=( const PresidentialPardonForm& other );
 
-		virtual void		execute( const Bureaucrat& bureaucrat );
+		virtual bool		execute( Bureaucrat const & executor ) const;
 };
 
 std::ostream	&operator<<( std::ostream& out, const PresidentialPardonForm& PresidentialPardonForm );

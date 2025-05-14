@@ -18,7 +18,7 @@ class RobotomyRequestForm : public AForm
 		
 		RobotomyRequestForm	&operator=( const RobotomyRequestForm& other );
 
-		virtual void		execute( const Bureaucrat& bureaucrat );
+		virtual bool		execute( Bureaucrat const & executor ) const;
 };
 
 std::ostream	&operator<<( std::ostream& out, const RobotomyRequestForm& RobotomyRequestForm );

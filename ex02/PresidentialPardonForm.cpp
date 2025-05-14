@@ -12,16 +12,18 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=( const PresidentialPar
 	return *this;
 }
 
-void	PresidentialPardonForm::execute( const Bureaucrat& bureaucrat ) {
+bool	PresidentialPardonForm::execute( Bureaucrat const & executor ) const {
 	if (this->getSigned() == false)
 		throw FileNotSignedException();
-	if (bureaucrat.getGrade() > this->getExecutingGrade())
+	if (executor.getGrade() > this->getExecutingGrade())
 		throw GradeTooLowException();
 	else {
 		std::cout << _target
 				  << " has been pardoned by Zaphod Beeblebrox."
 				  << std::endl;
+		return true;
 	}
+	return false;
 }
 
 std::ostream	&operator<<( std::ostream& out, const PresidentialPardonForm& PresidentialPardonForm ) {

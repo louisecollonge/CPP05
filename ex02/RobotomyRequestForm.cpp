@@ -12,20 +12,22 @@ RobotomyRequestForm	&RobotomyRequestForm::operator=( const RobotomyRequestForm& 
 	return *this;
 }
 
-void	RobotomyRequestForm::execute( const Bureaucrat& bureaucrat ) {
+bool	RobotomyRequestForm::execute( Bureaucrat const & executor ) const {
 	if (this->getSigned() == false)
 		throw FileNotSignedException();
-	if (bureaucrat.getGrade() > this->getExecutingGrade())
+	if (executor.getGrade() > this->getExecutingGrade())
 		throw GradeTooLowException();
 	
-	std::cout << "Dzzzzzzzzzzzzzzzzz !" << std::endl;
+	std::cout << "* Dzzzzzzzzzzzzzzzzz ! *" << std::endl;
 
 	std::srand(std::time(NULL));
-	if (std::rand() % 2 == 0)
+	if (std::rand() % 2 == 0) {
 		std::cout << _target << ": has been robotomized successfully!" << std::endl;
+		return true;
+	}
 	else
 		std::cout << _target << ": robotomy failed..." << std::endl;
-
+	return false;
 }
 
 std::ostream	&operator<<( std::ostream& out, const RobotomyRequestForm& RobotomyRequestForm ) {

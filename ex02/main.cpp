@@ -15,7 +15,7 @@ int	main() {
     {
         std::cout << PINK << "~ ShrubberyCreationForm tests ~" << RESET << std::endl;
         Bureaucrat bimo("Bimo", 1);
-        AForm* file = new ShrubberyCreationForm("file");
+        AForm* file = new ShrubberyCreationForm("File");
 
         try {
             bimo.executeForm(*file); // cause error bc not signed
@@ -38,7 +38,7 @@ int	main() {
     {
         std::cout << PINK << "~ RobotomyRequestForm tests ~" << RESET << std::endl;
         Bureaucrat bouzoumbip("Bouzoumbip", 45);
-        AForm* repertory = new RobotomyRequestForm("repertory");
+        AForm* repertory = new RobotomyRequestForm("Repertory");
 
         try {
             bouzoumbip.signForm(*repertory);
@@ -56,7 +56,7 @@ int	main() {
         std::cout << PINK << "~ PresidentialPardonForm tests ~" << RESET << std::endl;
         Bureaucrat cocotte("Cocotte", 6);
         Bureaucrat souverainCamomille("Souverain Camomille", 5);
-        AForm* sheet = new PresidentialPardonForm("sheet");
+        AForm* sheet = new PresidentialPardonForm("Sheet");
 
         try {
             cocotte.signForm(*sheet);
