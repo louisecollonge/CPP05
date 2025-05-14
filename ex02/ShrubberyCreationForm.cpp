@@ -15,27 +15,31 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=( const ShrubberyCreation
 }
 
 void	ShrubberyCreationForm::execute( const Bureaucrat& bureaucrat ) {
+	if (this->getSigned() == false)
+		throw FileNotSignedException();
 	if (bureaucrat.getGrade() < this->getExecutingGrade())
 		throw GradeTooLowException();
+
 	std::ofstream	file((_target + "_shrubbery").c_str());
 	if (!file.is_open()) {
 		std::cerr << "Error: cannot create file." << std::endl;
 		return ;
 	}
+
 	file << DARK_GREEN
-		 << "            ___"
-		 << "         _( .  )_"
-		 << "        ( .  .   )"
-		 << "      _(  .    .  )_" 
-		 << "     ( .     .    . )"
-		 << "    (.  \\ \\/ / .   .)"
-		 << "     (  .\\   \\_/ / . )"
-		 << "      (_. \\     / ._)"
-		 << "        ( .|   |. )"
-		 << "         (_|   |_)"
-		 << "           |   |"
-		 << "           |   |"
-		 << "_______\\\\\\/    \\///_______"
+		 << "           ____      v                __              "
+		 << "         _( .  )_       v v         _(  )_   _        "
+		 << "   v    ( .  .   )        v        ( .  . )_( )   v   "
+		 << "  v   _(  .    .  )_             _(  .    .   )     v " 
+		 << "     ( .     .    . )           ( .    .    .  )      "
+		 << "    (.  \\ \\/ / .    .)         (.  \\ \\  \\ \\//  .)     "
+		 << "     (  .\\   \\_/ / . )        (__  .\\ \\_/  / .  )     "
+		 << "      (_. \\     / ._)            (_. \\    /   _)      "
+		 << "        ( .|   |. )                (__|  |___)        "
+		 << "         (_|   |_)                    |  |            "
+		 << "           |   |                      |  |            "
+		 << "           |   |             *        |  |            "
+		 << "_______\\\\\\/     \\///________\\|/___\\\\\\/    \\///________"
 		 << RESET << std::endl;
 
 	file.close();

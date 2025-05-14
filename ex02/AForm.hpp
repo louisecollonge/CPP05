@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "Bureaucrat.hpp"
+#include "FileNotSignedException.hpp"
 
 class	Bureaucrat;
 
