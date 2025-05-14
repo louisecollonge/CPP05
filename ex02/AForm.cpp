@@ -32,6 +32,8 @@ int					AForm::getSigningGrade() const { return _signingGrade; }
 int					AForm::getExecutingGrade() const { return _executingGrade; }
 
 void	AForm::beSigned( const Bureaucrat &bureaucrat ) {
+	// std::cout << bureaucrat.getGrade() << std::endl;
+	// std::cout << _signingGrade << std::endl;
 	if (bureaucrat.getGrade() > _signingGrade)
 		throw GradeTooLowException();
 	else

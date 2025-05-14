@@ -17,11 +17,11 @@ void	PresidentialPardonForm::execute( const Bureaucrat& bureaucrat ) {
 		throw FileNotSignedException();
 	if (bureaucrat.getGrade() > this->getExecutingGrade())
 		throw GradeTooLowException();
-	
-	std::cout << _target
-			  << " has been pardoned by Zaphod Beeblebrox."
-			  << std::endl;
-
+	else {
+		std::cout << _target
+				  << " has been pardoned by Zaphod Beeblebrox."
+				  << std::endl;
+	}
 }
 
 std::ostream	&operator<<( std::ostream& out, const PresidentialPardonForm& PresidentialPardonForm ) {

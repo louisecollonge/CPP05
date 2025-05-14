@@ -5,9 +5,6 @@
 #include <string>
 #include "AForm.hpp"
 
-#define DARK_GREEN		"\033[38;5;22m"
-#define RESET			"\033[0m"
-
 class ShrubberyCreationForm : public AForm
 {
 	private:

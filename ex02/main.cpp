@@ -7,59 +7,73 @@
 #define ORANGE	    "\033[38;5;214m"
 #define BLUE	    "\033[34m"
 #define BOLD_RED    "\033[1;31m"
+#define PINK	 	"\033[0;35m"
 #define RESET	    "\033[0m"
 
 int	main() {
-
 // Shrubbery
-    try {
-        Bureaucrat  bimo("Bimo", 1);
-        AForm*  paper = new ShrubberyCreationForm("home");
+    {
+        std::cout << PINK << "~ ShrubberyCreationForm tests ~" << RESET << std::endl;
+        Bureaucrat bimo("Bimo", 1);
+        AForm* file = new ShrubberyCreationForm("file");
 
-        std::cout << ORANGE << bimo << RESET << std::endl;
-        std::cout << BLUE << paper << RESET << std::endl;
+        try {
+            bimo.executeForm(*file); // cause error bc not signed
+        } catch (std::exception &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        }
 
-        bimo.signForm(*paper);
-        bimo.executeForm(*paper);
-
-        delete paper;
-        std::cout << std::endl;
-    } catch (std::exception &e) {
-        std::cout << BOLD_RED << e.what() << RESET << std::endl;
-    }
-
-// Robotomy
-    try {
-        Bureaucrat  cocotte("Cocotte", 5);
-        AForm*  file = new RobotomyRequestForm("home");
-
-        std::cout << ORANGE << cocotte << RESET << std::endl;
-        std::cout << BLUE << file << RESET << std::endl;
-
-        cocotte.signForm(*file);
-        cocotte.executeForm(*file);
+        try {
+            bimo.signForm(*file);
+            bimo.executeForm(*file);
+        } catch (std::exception &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        }
 
         delete file;
         std::cout << std::endl;
-    } catch (std::exception &e) {
-        std::cout << BOLD_RED << e.what() << RESET << std::endl;
+    }
+
+// Robotomy
+    {
+        std::cout << PINK << "~ RobotomyRequestForm tests ~" << RESET << std::endl;
+        Bureaucrat bouzoumbip("Bouzoumbip", 45);
+        AForm* repertory = new RobotomyRequestForm("repertory");
+
+        try {
+            bouzoumbip.signForm(*repertory);
+            bouzoumbip.executeForm(*repertory);
+        } catch (std::exception &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        }
+
+        delete repertory;
+        std::cout << std::endl;
     }
 
 // Presidential pardon
-    try {
-        Bureaucrat  bouzoum("Bouzoum", 5);
-        AForm*  sheet = new PresidentialPardonForm("home");
+    {
+        std::cout << PINK << "~ PresidentialPardonForm tests ~" << RESET << std::endl;
+        Bureaucrat cocotte("Cocotte", 6);
+        Bureaucrat souverainCamomille("Souverain Camomille", 5);
+        AForm* sheet = new PresidentialPardonForm("sheet");
 
-        std::cout << ORANGE << bouzoum << RESET << std::endl;
-        std::cout << BLUE << sheet << RESET << std::endl;
+        try {
+            cocotte.signForm(*sheet);
+            cocotte.executeForm(*sheet); // cause error bc grade is too low
+        } catch (std::exception &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        }
 
-        bouzoum.signForm(*sheet);
-        bouzoum.executeForm(*sheet);
+        try {
+            souverainCamomille.signForm(*sheet);
+            souverainCamomille.executeForm(*sheet);
+        } catch (std::exception &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        }
 
         delete sheet;
         std::cout << std::endl;
-    } catch (std::exception &e) {
-        std::cout << BOLD_RED << e.what() << RESET << std::endl;
     }
 
     return 0;
