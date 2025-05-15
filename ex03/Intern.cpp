@@ -20,9 +20,9 @@ AForm*	Intern::makeForm( const std::string &formName, const std::string &target 
 	AForm*	(Intern::*functions[])(const std::string &target) = {	&Intern::makeShrubberyCreationForm,
 																	&Intern::makeRobotomyRequestForm,
 																	&Intern::makePresidentialPardonForm };
-	std::string	names[] = { "ShrubberyCreationForm",
-							"RobotomyRequestForm",
-							"PresidentialPardonForm" };
+	std::string	names[] = { "Shrubbery creation",
+							"Robotomy request",
+							"Presidential pardon" };
 	AForm*	newForm = NULL;
 
 	for (int i = 0; i < 3; i++) {
@@ -31,7 +31,7 @@ AForm*	Intern::makeForm( const std::string &formName, const std::string &target 
 	}
 
 	if (newForm != NULL)
-		std::cout << "Interne creates " << formName << "." << std::endl;
+		std::cout << "Interne creates " << formName << std::endl;
 	else
 		std::cout << BOLD_RED << "Error: intern cannot create " << formName << " because it does not exist." << RESET << std::endl;
 	return newForm;

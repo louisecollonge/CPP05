@@ -32,8 +32,6 @@ int					AForm::getSigningGrade() const { return _signingGrade; }
 int					AForm::getExecutingGrade() const { return _executingGrade; }
 
 void	AForm::beSigned( const Bureaucrat &bureaucrat ) {
-	// std::cout << bureaucrat.getGrade() << std::endl;
-	// std::cout << _signingGrade << std::endl;
 	if (bureaucrat.getGrade() > _signingGrade)
 		throw GradeTooLowException();
 	else
@@ -41,8 +39,8 @@ void	AForm::beSigned( const Bureaucrat &bureaucrat ) {
 }
 
 std::ostream	&operator<<( std::ostream& out, const AForm& AForm ) {
-	out << "Name: " << AForm.getName() << std::endl
-		<< "Boolean: " << AForm.getSigned() << std::endl
+	out << "Name of the form: " << AForm.getName() << std::endl
+		<< "Is it signed: " << AForm.getSigned() << std::endl
 		<< "Signing grade: " << AForm.getSigningGrade() << std::endl
 		<< "Executing grade: " << AForm.getExecutingGrade() << std::endl;
 	return out;

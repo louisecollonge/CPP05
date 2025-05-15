@@ -15,10 +15,11 @@ int	main() {
     Intern  bimo;
     Bureaucrat  cocotte("Cocotte", 1);
 
-    AForm* form = bimo.makeForm("ShrubberyCreationForm", "form");
-    AForm* file = bimo.makeForm("RobotomyRequestForm", "file");
-    AForm* repertory = bimo.makeForm("PresidentialPardonForm", "repertory");
-    AForm* wrongForm = bimo.makeForm("wrongForm", "wrongForm");
+    AForm* form = bimo.makeForm("Shrubbery creation", "form");
+    AForm* file = bimo.makeForm("Robotomy request", "file");
+    AForm* repertory = bimo.makeForm("Presidential pardon", "repertory");
+    AForm* wrongForm = bimo.makeForm("wrong", "wrongForm");
+
     std::cout << std::endl;
 
     try {

@@ -25,14 +25,15 @@ bool	RobotomyRequestForm::execute( Bureaucrat const & executor ) const {
 		std::cout << _target << ": has been robotomized successfully!" << std::endl;
 		return true;
 	}
-	else
+	else {
 		std::cout << _target << ": robotomy failed..." << std::endl;
-	return false;
+		return false;
+	}
 }
 
 std::ostream	&operator<<( std::ostream& out, const RobotomyRequestForm& RobotomyRequestForm ) {
-	out << "Name: " << RobotomyRequestForm.getName() << std::endl
-		<< "Boolean: " << RobotomyRequestForm.getSigned() << std::endl
+	out << "Name of the form: " << RobotomyRequestForm.getName() << std::endl
+		<< "Is it signed: " << RobotomyRequestForm.getSigned() << std::endl
 		<< "Signing grade: " << RobotomyRequestForm.getSigningGrade() << std::endl
 		<< "Executing grade: " << RobotomyRequestForm.getExecutingGrade() << std::endl;
 	return out;

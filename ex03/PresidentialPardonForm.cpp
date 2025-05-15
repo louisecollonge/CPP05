@@ -27,8 +27,8 @@ bool	PresidentialPardonForm::execute( Bureaucrat const & executor ) const {
 }
 
 std::ostream	&operator<<( std::ostream& out, const PresidentialPardonForm& PresidentialPardonForm ) {
-	out << "Name: " << PresidentialPardonForm.getName() << std::endl
-		<< "Boolean: " << PresidentialPardonForm.getSigned() << std::endl
+	out << "Name of the file: " << PresidentialPardonForm.getName() << std::endl
+		<< "Is it signed: " << PresidentialPardonForm.getSigned() << std::endl
 		<< "Signing grade: " << PresidentialPardonForm.getSigningGrade() << std::endl
 		<< "Executing grade: " << PresidentialPardonForm.getExecutingGrade() << std::endl;
 	return out;

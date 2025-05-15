@@ -49,8 +49,8 @@ bool	ShrubberyCreationForm::execute( Bureaucrat const & executor ) const {
 }
 
 std::ostream	&operator<<( std::ostream& out, const ShrubberyCreationForm& ShrubberyCreationForm ) {
-	out << "Name: " << ShrubberyCreationForm.getName() << std::endl
-		<< "Boolean: " << ShrubberyCreationForm.getSigned() << std::endl
+	out << "Name of the form: " << ShrubberyCreationForm.getName() << std::endl
+		<< "Is it signed: " << ShrubberyCreationForm.getSigned() << std::endl
 		<< "Signing grade: " << ShrubberyCreationForm.getSigningGrade() << std::endl
 		<< "Executing grade: " << ShrubberyCreationForm.getExecutingGrade() << std::endl;
 	return out;

@@ -44,7 +44,6 @@ void	Bureaucrat::signForm( AForm &form ) const {
 		std::cout << _name
 				  << " signed "
 				  << form.getName()
-				  << "."
 				  << std::endl;
 	} catch (std::exception& e) {
 		std::cout << _name
@@ -52,6 +51,7 @@ void	Bureaucrat::signForm( AForm &form ) const {
 				  << form.getName()
 				  << " because "
 				  << e.what()
+				  << "."
 				  << std::endl;
 	}
 }
@@ -61,7 +61,6 @@ void	Bureaucrat::executeForm( AForm const & form ) const {
 		std::cout << _name
 			  << " executed "
 			  << form.getName()
-			  << "."
 			  << std::endl;
 	}
 	else {
