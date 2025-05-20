@@ -15,12 +15,13 @@
 
 class Intern
 {
+	private:
+		Intern( const Intern& other );
+		Intern	&operator=( const Intern& other );
+	
 	public:
 		Intern();
-		Intern( const Intern& other );
 		~Intern();
-
-		Intern	&operator=( const Intern& other );
 
 		AForm*	makeForm( const std::string &formName, const std::string &target );
 		AForm*	makeShrubberyCreationForm( const std::string &target );

@@ -5,8 +5,6 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Intern.hpp"
 
-
-
 int	main() {
     Intern  bimo;
     Bureaucrat  cocotte("Cocotte", 140);
