@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat( const Bureaucrat& other ) :
 Bureaucrat	&Bureaucrat::operator=( const Bureaucrat& other ) {
 	if (this != &other)
         _grade = other._grade;
-	std::cerr << "Cannot assign Bureaucrats" << std::endl;
+	std::cerr << "Cannot assign Bureaucrats because name attribute is constant" << std::endl;
 	return *this;
 }
 
@@ -86,6 +86,6 @@ std::ostream	&operator<<( std::ostream& out, const Bureaucrat &bureaucrat ) {
 
 //____________________Exceptions____________________//
 
-const char*	Bureaucrat::GradeTooHighException::what() const throw() { return "Grade is too high !"; }
+const char*	Bureaucrat::GradeTooHighException::what() const throw() { return "Grade is too high"; }
 
-const char*	Bureaucrat::GradeTooLowException::what() const throw() { return "Grade is too low !"; }
+const char*	Bureaucrat::GradeTooLowException::what() const throw() { return "Grade is too low"; }

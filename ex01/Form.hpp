@@ -13,12 +13,13 @@ class Form
 		bool				_signed;
 		const int			_signingGrade;
 		const int			_executingGrade;
+		
+		Form	&operator=( const Form& other );
 
 	public:
 		Form( const std::string name, const int signingGrade, const int executingGrade );
 		Form( const Form& other );
 		~Form();
-		Form	&operator=( const Form& other );
 
 		const std::string	getName() const;
 		bool				getSigned() const;

@@ -17,7 +17,7 @@ bool	RobotomyRequestForm::execute( Bureaucrat const & executor ) const {
 		throw FileNotSignedException();
 	if (executor.getGrade() > this->getExecutingGrade())
 		throw GradeTooLowException();
-	
+
 	std::cout << "* Dzzzzzzzzzzzzzzzzz ! *" << std::endl;
 
 	std::srand(std::time(NULL));

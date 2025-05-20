@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat( const Bureaucrat& other ) :
 Bureaucrat	&Bureaucrat::operator=( const Bureaucrat& other ) {
 	if (this != &other)
         _grade = other._grade;
-	std::cerr << "Cannot assign Bureaucrats" << std::endl;
+	std::cerr << "Cannot assign Bureaucrats because name attribute is constant" << std::endl;
 	return *this;
 }
 

@@ -7,7 +7,7 @@
 
 int	main() {
     Intern  bimo;
-    Bureaucrat  cocotte("Cocotte", 140);
+    Bureaucrat  cocotte("Cocotte", 138);
 
     AForm* form = bimo.makeForm("Shrubbery creation", "form");
     AForm* file = bimo.makeForm("Robotomy request", "file");
