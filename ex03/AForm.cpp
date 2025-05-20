@@ -45,3 +45,18 @@ std::ostream	&operator<<( std::ostream& out, const AForm& AForm ) {
 		<< "Executing grade: " << AForm.getExecutingGrade() << std::endl;
 	return out;
 }
+
+
+//__________________________________EXCEPTIONS__________________________________//
+
+const char*	AForm::GradeTooHighException::what() const throw() {
+	return "Grade is too high: must be >= 1 !";
+}
+
+const char*	AForm::GradeTooLowException::what() const throw() {
+	return "Grade is too low: must be <= 150 !";
+}
+
+const char*	AForm::FileNotSignedException::what() const throw() {
+	return "file is not signed.";
+}

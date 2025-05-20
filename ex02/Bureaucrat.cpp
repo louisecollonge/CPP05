@@ -1,10 +1,12 @@
 #include "Bureaucrat.hpp"
 
+//__________________Canonical Form__________________//
+
 Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name) {
 	if (grade < 1)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	else if (grade > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else
 		_grade = grade;
 }
@@ -22,19 +24,21 @@ Bureaucrat	&Bureaucrat::operator=( const Bureaucrat& other ) {
 
 Bureaucrat::~Bureaucrat() {}
 
+//______________________Methods_____________________//
+
 const std::string	&Bureaucrat::getName() const { return _name; }
 
 int	Bureaucrat::getGrade() const { return _grade; }
 
 void	Bureaucrat::incrementGrade() {
 	if (_grade <= 1)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	_grade--;
 }
 
 void	Bureaucrat::decrementGrade() {
 	if (_grade >= 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	_grade++;
 }
 
@@ -45,7 +49,7 @@ void	Bureaucrat::signForm( AForm &form ) const {
 				  << " signed "
 				  << form.getName()
 				  << std::endl;
-	} catch (std::exception& e) {
+	} catch (AForm::GradeTooLowException &e) {
 		std::cout << _name
 				  << " couldn't sign "
 				  << form.getName()
@@ -67,7 +71,7 @@ void	Bureaucrat::executeForm( AForm const & form ) const {
 		std::cout << _name
 				  << " failed the execution of "
 				  << form.getName()
-				  << "..."
+				  << "."
 				  << std::endl;
 	}
 }
@@ -79,3 +83,9 @@ std::ostream	&operator<<( std::ostream& out, const Bureaucrat &bureaucrat ) {
 		<< ".";
 	return out;
 }
+
+//____________________Exceptions____________________//
+
+const char*	Bureaucrat::GradeTooHighException::what() const throw() { return "Grade is too high"; }
+
+const char*	Bureaucrat::GradeTooLowException::what() const throw() { return "Grade is too low"; }

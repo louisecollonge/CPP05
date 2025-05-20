@@ -13,15 +13,21 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=( const PresidentialPar
 }
 
 bool	PresidentialPardonForm::execute( Bureaucrat const & executor ) const {
-	if (this->getSigned() == false)
-		throw FileNotSignedException();
-	if (executor.getGrade() > this->getExecutingGrade())
-		throw GradeTooLowException();
-	else {
-		std::cout << _target
-				  << " has been pardoned by Zaphod Beeblebrox."
-				  << std::endl;
-		return true;
+	try {
+		if (this->getSigned() == false)
+			throw AForm::FileNotSignedException();
+		if (executor.getGrade() > this->getExecutingGrade())
+			throw Bureaucrat::GradeTooLowException();
+		else {
+			std::cout << _target
+					<< " has been pardoned by Zaphod Beeblebrox."
+					<< std::endl;
+			return true;
+		}
+	} catch (const AForm::FileNotSignedException &e) {
+		std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+	} catch (const Bureaucrat::GradeTooLowException &e) {
+		std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
 	}
 	return false;
 }

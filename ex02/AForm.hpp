@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include "Bureaucrat.hpp"
-#include "FileNotSignedException.hpp"
 
 class	Bureaucrat;
 
@@ -29,6 +28,20 @@ class AForm
 		void				beSigned( const Bureaucrat &bureaucrat );
 
 		virtual bool		execute( Bureaucrat const & executor ) const = 0;
+
+		class	GradeTooHighException : public std::exception {
+			public:
+				virtual const char*	what() const throw();
+		};
+		class	GradeTooLowException : public std::exception {
+			public:
+				virtual const char*	what() const throw();
+		};
+		class	FileNotSignedException : public std::exception {
+			public:
+				virtual const char*	what() const throw();
+		};
+		
 };
 
 std::ostream	&operator<<( std::ostream& out, const AForm& Aform );

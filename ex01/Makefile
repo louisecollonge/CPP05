@@ -6,8 +6,6 @@ CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 SRC =	main.cpp \
 		Bureaucrat.cpp \
-		GradeTooHighException.cpp \
-		GradeTooLowException.cpp \
 		Form.cpp
 
 OBJ_DIR = obj

@@ -1,5 +1,7 @@
 #include "AForm.hpp"
 
+//__________________Canonical Form__________________//
+
 AForm::AForm( const std::string name, const int signingGrade, const int executingGrade ) :
 	_name (name) ,
 	_signed (false),
@@ -7,9 +9,9 @@ AForm::AForm( const std::string name, const int signingGrade, const int executin
 	_executingGrade (executingGrade)
 {
 	if (_signingGrade < 1 || _executingGrade < 1)
-		throw GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	if (_signingGrade > 150 || _executingGrade > 150)
-		throw GradeTooLowException();
+		throw AForm::GradeTooLowException();
 }
 
 AForm::AForm( const AForm& other ) :
@@ -26,6 +28,8 @@ AForm	&AForm::operator=( const AForm& other ) {
 	return *this;
 }
 
+//______________________Methods_____________________//
+
 const std::string	AForm::getName() const { return _name; }
 bool				AForm::getSigned() const { return _signed; }
 int					AForm::getSigningGrade() const { return _signingGrade; }
@@ -33,7 +37,7 @@ int					AForm::getExecutingGrade() const { return _executingGrade; }
 
 void	AForm::beSigned( const Bureaucrat &bureaucrat ) {
 	if (bureaucrat.getGrade() > _signingGrade)
-		throw GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	else
 		_signed = true;
 }
@@ -45,3 +49,11 @@ std::ostream	&operator<<( std::ostream& out, const AForm& AForm ) {
 		<< "Executing grade: " << AForm.getExecutingGrade() << std::endl;
 	return out;
 }
+
+//____________________Exceptions____________________//
+
+const char*	AForm::GradeTooHighException::what() const throw() { return "Grade is too high: must be >= 1 !"; }
+
+const char*	AForm::GradeTooLowException::what() const throw() { return "Grade is too low: must be <= 150 !"; }
+
+const char*	AForm::FileNotSignedException::what() const throw() { return "file is not signed."; }

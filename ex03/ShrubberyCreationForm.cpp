@@ -13,39 +13,42 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=( const ShrubberyCreation
 }
 
 bool	ShrubberyCreationForm::execute( Bureaucrat const & executor ) const {
-	if (this->getSigned() == false) {
-		throw FileNotSignedException();
-		return false;
-	}
-	if (executor.getGrade() > this->getExecutingGrade()) {
-		throw GradeTooLowException();
-		return false;
-	}
+	try {
+		if (this->getSigned() == false)
+			throw AForm::FileNotSignedException();
+		if (executor.getGrade() > this->getExecutingGrade())
+			throw Bureaucrat::GradeTooLowException();
 
-	std::ofstream	file((_target + "_shrubbery").c_str());
-	if (!file.is_open()) {
-		std::cerr << "Error: cannot create file." << std::endl;
-		return false;
+		std::ofstream	file((_target + "_shrubbery").c_str());
+		if (!file.is_open()) {
+			std::cerr << "Error: cannot create file." << std::endl;
+			return false;
+		}
+
+		file << "                                v                     \n"
+			<< "           ____      v                __              \n"
+			<< "         _( .  )_       v v         _(  )_   _        \n"
+			<< "   v    ( .  .   )        v        ( .  . )_( )   v   \n"
+			<< "  v   _(  .    .  )_             _(  .    .   )     v \n" 
+			<< "     ( .     .    . )           ( .    .    .  )      \n"
+			<< "    (.  \\ \\/ / .    .)         (.  \\ \\  \\ \\//  .)     \n"
+			<< "     (  .\\   \\_/ / . )        (__  .\\ \\_/  / .  )     \n"
+			<< "      (_. \\     / ._)            (_. \\    /   _)      \n"
+			<< "        ( .|   |. )                (__|  |___)        \n"
+			<< "         (_|   |_)                    |  |            \n"
+			<< "           |   |                      |  |            \n"
+			<< "           |   |             *        |  |            \n"
+			<< "_______\\\\\\/     \\///________\\|/___\\\\\\/    \\///________\n"
+			<< std::endl;
+
+		file.close();
+		return true;
+	} catch (const AForm::FileNotSignedException &e) {
+		std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+	} catch (const Bureaucrat::GradeTooLowException &e) {
+		std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
 	}
-
-	file << "                                v                     \n"
-		 << "           ____      v                __              \n"
-		 << "         _( .  )_       v v         _(  )_   _        \n"
-		 << "   v    ( .  .   )        v        ( .  . )_( )   v   \n"
-		 << "  v   _(  .    .  )_             _(  .    .   )     v \n" 
-		 << "     ( .     .    . )           ( .    .    .  )      \n"
-		 << "    (.  \\ \\/ / .    .)         (.  \\ \\  \\ \\//  .)     \n"
-		 << "     (  .\\   \\_/ / . )        (__  .\\ \\_/  / .  )     \n"
-		 << "      (_. \\     / ._)            (_. \\    /   _)      \n"
-		 << "        ( .|   |. )                (__|  |___)        \n"
-		 << "         (_|   |_)                    |  |            \n"
-		 << "           |   |                      |  |            \n"
-		 << "           |   |             *        |  |            \n"
-		 << "_______\\\\\\/     \\///________\\|/___\\\\\\/    \\///________\n"
-		 << std::endl;
-
-	file.close();
-	return true;
+	return false;
 }
 
 std::ostream	&operator<<( std::ostream& out, const ShrubberyCreationForm& ShrubberyCreationForm ) {

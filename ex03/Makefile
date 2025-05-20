@@ -6,13 +6,10 @@ CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 SRC =	main.cpp \
 		Bureaucrat.cpp \
-		GradeTooHighException.cpp \
-		GradeTooLowException.cpp \
 		AForm.cpp \
 		PresidentialPardonForm.cpp \
 		RobotomyRequestForm.cpp \
 		ShrubberyCreationForm.cpp \
-		FileNotSignedException.cpp \
 		Intern.cpp
 
 OBJ_DIR = obj

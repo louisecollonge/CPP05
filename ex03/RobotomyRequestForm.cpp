@@ -13,22 +13,29 @@ RobotomyRequestForm	&RobotomyRequestForm::operator=( const RobotomyRequestForm& 
 }
 
 bool	RobotomyRequestForm::execute( Bureaucrat const & executor ) const {
-	if (this->getSigned() == false)
-		throw FileNotSignedException();
-	if (executor.getGrade() > this->getExecutingGrade())
-		throw GradeTooLowException();
-	
-	std::cout << "* Dzzzzzzzzzzzzzzzzz ! *" << std::endl;
+	try {
+		if (this->getSigned() == false)
+			throw AForm::FileNotSignedException();
+		if (executor.getGrade() > this->getExecutingGrade())
+			throw Bureaucrat::GradeTooLowException();
+		
+		std::cout << "* Dzzzzzzzzzzzzzzzzz ! *" << std::endl;
 
-	std::srand(std::time(NULL));
-	if (std::rand() % 2 == 0) {
-		std::cout << _target << ": has been robotomized successfully!" << std::endl;
-		return true;
+		std::srand(std::time(NULL));
+		if (std::rand() % 2 == 0) {
+			std::cout << _target << ": has been robotomized successfully!" << std::endl;
+			return true;
+		}
+		else {
+			std::cout << _target << ": robotomy failed..." << std::endl;
+			return false;
+		}
+	} catch (const AForm::FileNotSignedException &e) {
+		std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+	} catch (const Bureaucrat::GradeTooLowException &e) {
+		std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
 	}
-	else {
-		std::cout << _target << ": robotomy failed..." << std::endl;
-		return false;
-	}
+	return false;
 }
 
 std::ostream	&operator<<( std::ostream& out, const RobotomyRequestForm& RobotomyRequestForm ) {

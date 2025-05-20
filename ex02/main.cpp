@@ -19,14 +19,18 @@ int	main() {
 
         try {
             bimo.executeForm(*file); // cause error bc not signed
-        } catch (std::exception &e) {
+        } catch (AForm::FileNotSignedException &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        } catch (AForm::GradeTooLowException &e) {
             std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
         }
 
         try {
-            bimo.signForm(*file);
-            bimo.executeForm(*file);
-        } catch (std::exception &e) {
+            bimo.signForm(*file); // writes "Bimo signed..."
+            bimo.executeForm(*file); // writes "Bimo executed..."
+        } catch (AForm::GradeTooLowException &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        } catch (AForm::FileNotSignedException &e) {
             std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
         }
 
@@ -41,9 +45,17 @@ int	main() {
         AForm* repertory = new RobotomyRequestForm("Repertory");
 
         try {
-            bouzoumbip.signForm(*repertory);
-            bouzoumbip.executeForm(*repertory);
-        } catch (std::exception &e) {
+            bouzoumbip.executeForm(*repertory); // cause error bc not signed
+        } catch (AForm::FileNotSignedException &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        }
+
+        try {
+            bouzoumbip.signForm(*repertory); // writes "Bouzoumbip signed..."
+            bouzoumbip.executeForm(*repertory); // will try to execute
+        } catch (AForm::GradeTooLowException &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        } catch (AForm::FileNotSignedException &e) {
             std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
         }
 
@@ -61,14 +73,18 @@ int	main() {
         try {
             cocotte.signForm(*sheet);
             cocotte.executeForm(*sheet); // cause error bc grade is too low
-        } catch (std::exception &e) {
+        } catch (AForm::GradeTooLowException &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        } catch (AForm::FileNotSignedException &e) {
             std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
         }
 
         try {
             souverainCamomille.signForm(*sheet);
             souverainCamomille.executeForm(*sheet);
-        } catch (std::exception &e) {
+        } catch (AForm::GradeTooLowException &e) {
+            std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
+        } catch (AForm::FileNotSignedException &e) {
             std::cout << BOLD_RED << "Error: " << e.what() << RESET << std::endl;
         }
 
