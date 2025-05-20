@@ -52,8 +52,8 @@ std::ostream	&operator<<( std::ostream& out, const AForm& AForm ) {
 
 //____________________Exceptions____________________//
 
-const char*	AForm::GradeTooHighException::what() const throw() { return "Grade is too high: must be >= 1 !"; }
+const char*	AForm::GradeTooHighException::what() const throw() { return "Grade is too high"; }
 
-const char*	AForm::GradeTooLowException::what() const throw() { return "Grade is too low: must be <= 150 !"; }
+const char*	AForm::GradeTooLowException::what() const throw() { return "Grade is too low"; }
 
-const char*	AForm::FileNotSignedException::what() const throw() { return "file is not signed."; }
+const char*	AForm::FileNotSignedException::what() const throw() { return "file is not signed"; }
